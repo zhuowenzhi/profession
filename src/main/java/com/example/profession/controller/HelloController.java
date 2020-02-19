@@ -15,6 +15,6 @@ public class HelloController {
     @GetMapping("/hello")
     public ModelAndView greeting(@RequestParam(name = "name") String name, Model model) {
         model.addAttribute("name", name);
-        return new ModelAndView("hello");
+        return new ModelAndView("demo");
     }
 }
