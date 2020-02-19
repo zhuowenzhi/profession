@@ -9,12 +9,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.swing.text.View;
 
+/**
+ * Created by zwz on 2020/02/20
+ */
 @Controller
-public class HelloController {
+public class IndexController {
 
-    @GetMapping("/hello")
-    public ModelAndView greeting(@RequestParam(name = "name") String name, Model model) {
-        model.addAttribute("name", name);
-        return new ModelAndView("demo");
+    @GetMapping("/")
+    public String index() {
+        return "index";
     }
+
 }
