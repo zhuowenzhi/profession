@@ -1,6 +1,7 @@
 package com.example.profession.controller;
 
 import com.example.profession.dto.AccessTokenDTO;
+import com.example.profession.dto.GithubUser;
 import com.example.profession.provider.GithubProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,7 +28,9 @@ public class AuthorizeController {
         accessTokenDTO.setState(state);
         accessTokenDTO.setClient_secret("a581e66c95930596eaa622e7f952eda546435705");
 
-        githubProvider.getAccessToken(accessTokenDTO);
+        String accessToken = githubProvider.getAccessToken(accessTokenDTO);
+        GithubUser user = githubProvider.getUser(accessToken);
+        System.out.println(user.getName());
 
         return "index";
     }
