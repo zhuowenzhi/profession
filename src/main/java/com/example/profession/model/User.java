@@ -2,7 +2,7 @@ package com.example.profession.model;
 
 /**
  * @author : zwz
- * @date 2020/2/21 0021 15:39
+ * @date : 2020/2/21
  */
 public class User {
     private Integer id;

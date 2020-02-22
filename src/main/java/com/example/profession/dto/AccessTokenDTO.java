@@ -2,7 +2,7 @@ package com.example.profession.dto;
 
 /**
  * @author: zwz
- * @date : 2020/2/20 14:42
+ * @date : 2020/2/20
  */
 public class AccessTokenDTO {
     private String client_id;

@@ -5,7 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 /**
  * @author : zwz
- * @date 2020/2/20 0020 22:50
+ * @date : 2020/2/20
  */
 @Mapper
 public interface UserMapper {

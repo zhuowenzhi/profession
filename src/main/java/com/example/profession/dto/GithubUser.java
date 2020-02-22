@@ -2,7 +2,7 @@ package com.example.profession.dto;
 
 /**
  * @author : zwz
- * @date 2020/2/20 0020 19:30
+ * @date : 2020/2/20
  */
 public class GithubUser {
     private String name;
