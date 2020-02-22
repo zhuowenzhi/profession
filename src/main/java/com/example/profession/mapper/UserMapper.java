@@ -1,5 +1,4 @@
 package com.example.profession.mapper;
-
 import com.example.profession.model.User;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
