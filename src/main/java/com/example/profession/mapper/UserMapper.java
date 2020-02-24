@@ -2,6 +2,7 @@ package com.example.profession.mapper;
 import com.example.profession.model.User;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 
 /**
  * @author : zwz
@@ -9,7 +10,7 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface UserMapper {
-    @Insert("insert into user(account_id,name,token,gmt_create,gmt_modified) values(#{accountId),#{name},#{token},#{gmtCreate},#{gmtModified}")
+    @Insert("insert into user(account_id,name,token,gmt_create,gmt_modified) values(#{accountId},#{name},#{token},#{gmtCreate},#{gmtModified}")
     void insert(User user);
 
 }
