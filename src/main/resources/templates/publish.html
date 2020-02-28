@@ -18,6 +18,7 @@
                 <h2><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>发布</h2>
                 <hr class="primary">
                 <form action="/publish" method="post">
+                    <input type="hidden" name="id" th:value="${id}">
                     <div class="form-group">
                         <label for="title">标题（简单扼要）</label>
                         <input type="text" class="form-control"  th:value="${title}" id="title" name="title" placeholder="标题">
