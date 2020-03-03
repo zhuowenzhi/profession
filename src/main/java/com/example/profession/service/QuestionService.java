@@ -4,6 +4,7 @@ import com.example.profession.dto.PaginationDTO;
 import com.example.profession.dto.QuestionDTO;
 import com.example.profession.exception.CustomizeErrorCode;
 import com.example.profession.exception.CustomizeException;
+import com.example.profession.mapper.QuestionExtMapper;
 import com.example.profession.mapper.QuestionMapper;
 import com.example.profession.mapper.UserMapper;
 import com.example.profession.model.Question;
@@ -29,6 +30,9 @@ public class QuestionService {
 
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private QuestionExtMapper questionExtMapper;
 
     public PaginationDTO list(Integer page, Integer size) {
 
@@ -162,5 +166,12 @@ public class QuestionService {
                 throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
             }
         }
+    }
+
+    public void incView(Integer id) {
+        Question question = questionMapper.selectByPrimaryKey(id);
+        question.setId(id);
+        question.setViewCount(1);
+        questionExtMapper.incView(question);
     }
 }
