@@ -6,4 +6,5 @@ package com.example.profession.exception;
  */
 public interface ICustomizeErrorCode {
     String getMessage();
+    Integer getCode();
 }
