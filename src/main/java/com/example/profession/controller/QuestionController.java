@@ -36,8 +36,6 @@ public class QuestionController {
         //增加阅读数
        questionService.incView(id);
 
-        System.out.println("questionDTO==============");
-        System.out.println(questionDTO);
         model.addAttribute("question", questionDTO);
         model.addAttribute("comments", comments);
         return "question";

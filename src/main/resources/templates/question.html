@@ -3,7 +3,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 
-    <title th:value="#{question.title}"></title>
+    <title th:text="${question.title}"></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" href="/bootstrap-3.3.7-dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css"/>
@@ -29,7 +29,7 @@
 
             <!--正文-->
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <h4 class="question-title"><span th:value="#{question.title}"></span></h4>
+                <h4 class="question-title"><span th:text="${question.title}"></span></h4>
                 <span class="text-desc">
                     作者：<span th:text="${question.user.name}"></span> |
                     发布时间：<span th:text="${#dates.format(question.gmtCreate,'yyyy-MM-dd HH:mm')}"></span> |
@@ -45,10 +45,13 @@
                     <!--<img src="/images/hot.png"/>-->
                 <!--</div>-->
 
-                <!--&lt;!&ndash;内容&ndash;&gt;-->
-                <!--<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="question-view">-->
-                    <!--<textarea style="display:none;" th:text="${question.description}"></textarea>-->
-                <!--</div>-->
+
+                <!--内容-->
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" th:text="${question.description}"></div>
+                <!--内容-->
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="question-view">
+                    <textarea style="display:none;" th:text="${question.description}"></textarea>
+                </div>
                 <!--<script type="text/javascript">-->
                     <!--$(function () {-->
                         <!--editormd.markdownToHTML("question-view", {});-->

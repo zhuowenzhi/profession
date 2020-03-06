@@ -139,6 +139,10 @@ public class QuestionService {
         BeanUtils.copyProperties(question,questionDTO);
         User user = userMapper.selectByPrimaryKey(question.getCreator());
         questionDTO.setUser(user);
+
+        System.out.println("questionDTO--------------");
+        System.out.println(questionDTO);
+        System.out.println("questionDTO--------------");
         return questionDTO;
 
     }
