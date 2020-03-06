@@ -1,6 +1,6 @@
 package com.example.profession.controller;
 
-import com.example.profession.dto.CommentDTO;
+import com.example.profession.dto.CommentCreateDTO;
 import com.example.profession.dto.ResultDTO;
 import com.example.profession.exception.CustomizeErrorCode;
 import com.example.profession.exception.CustomizeException;
@@ -32,7 +32,7 @@ public class CommentController {
 
     @ResponseBody
     @RequestMapping(value = "/comment", method = RequestMethod.POST)
-    public Object post(@RequestBody CommentDTO commentDTO,
+    public Object post(@RequestBody CommentCreateDTO commentCreateDTO,
                        HttpServletRequest request) {
 
         User user =(User) request.getSession().getAttribute("user");
@@ -40,9 +40,9 @@ public class CommentController {
             return ResultDTO.errorOf(new CustomizeException(CustomizeErrorCode.NO_LOGIN));
         }
         Comment comment = new Comment();
-        comment.setParentId(commentDTO.getParentId());
-        comment.setContent(commentDTO.getContent());
-        comment.setType(commentDTO.getType());
+        comment.setParentId(commentCreateDTO.getParentId());
+        comment.setContent(commentCreateDTO.getContent());
+        comment.setType(commentCreateDTO.getType());
         comment.setGmtCreate(System.currentTimeMillis());
         comment.setGmtModified(System.currentTimeMillis());
         comment.setCommentator(user.getId());

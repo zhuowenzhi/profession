@@ -13,18 +13,21 @@ public class ResultDTO{
     private String message;
 
     public static ResultDTO errorOf(Integer code, String message) {
-        ResultDTO resultDTO = new ResultDTO();
-        resultDTO.setCode(code);
-        resultDTO.setMessage(message);
+        ResultDTO resultDTO = new ResultDTO(code, message);
         return resultDTO;
     }
 
     public static ResultDTO okOf() {
-        ResultDTO resultDTO = new ResultDTO();
-        resultDTO.setCode(200);
-        resultDTO.setMessage("请求成功");
+        ResultDTO resultDTO = new ResultDTO(200, "请求成功");
         return resultDTO;
     }
+
+    public ResultDTO(Integer code, String message) {
+        this.code = code;
+        this.message = message;
+    }
+
+    public ResultDTO() {}
 
     public static ResultDTO errorOf(CustomizeException e) {
         return errorOf(e.getCode(),e.getMessage());

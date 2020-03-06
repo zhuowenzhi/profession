@@ -19,7 +19,7 @@
             <div class="media"  th:each="question : ${pagination.questions}">
                 <div class="media-left">
                     <a href="#">
-                        <img class="media-object img-rounded media-object-img" th:src="${question.user.avatarUrl}" alt="头像加载失败">
+                        <img class="media-object img-rounded" th:src="${question.user.avatarUrl}" alt="头像加载失败">
                     </a>
                 </div>
                 <div class="media-body">

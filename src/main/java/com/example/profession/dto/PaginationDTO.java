@@ -17,6 +17,10 @@ public class PaginationDTO {
     private boolean showNext;
     private boolean showEndPage;
 
+    public void setQuestions(List<QuestionDTO> questions) {
+        this.questions = questions;
+    }
+
     private Integer page;
     private List<Integer> pages = new ArrayList<>();
      Integer totalPage;
