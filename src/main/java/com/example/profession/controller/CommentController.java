@@ -1,7 +1,9 @@
 package com.example.profession.controller;
 
 import com.example.profession.dto.CommentCreateDTO;
+import com.example.profession.dto.CommentDTO;
 import com.example.profession.dto.ResultDTO;
+import com.example.profession.enums.CommentTypeEum;
 import com.example.profession.exception.CustomizeErrorCode;
 import com.example.profession.exception.CustomizeException;
 import com.example.profession.mapper.CommentMapper;
@@ -11,12 +13,10 @@ import com.example.profession.service.CommentService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * @author : zwz
@@ -54,5 +54,12 @@ public class CommentController {
         comment.setCommentator(user.getId());
         commentService.insert(comment);
         return ResultDTO.okOf();
+    }
+    @ResponseBody
+    @RequestMapping(value = "/comment/{id}", method = RequestMethod.GET)
+    public ResultDTO<List> comments(@PathVariable(name = "id") Long id) {
+
+        List<CommentDTO> commentDTOS = commentService.listByTargetId(id, CommentTypeEum.COMMENT);
+        return ResultDTO.okOf(commentDTOS);
     }
 }

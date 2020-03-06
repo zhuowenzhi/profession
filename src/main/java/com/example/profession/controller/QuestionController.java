@@ -2,6 +2,7 @@ package com.example.profession.controller;
 
 import com.example.profession.dto.CommentDTO;
 import com.example.profession.dto.QuestionDTO;
+import com.example.profession.enums.CommentTypeEum;
 import com.example.profession.service.CommentService;
 import com.example.profession.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,7 @@ public class QuestionController {
                            Model model) {
         QuestionDTO questionDTO = questionService.getById(id);
 
-        List<CommentDTO> comments = commentService.listByQuestionId(id);
+        List<CommentDTO> comments = commentService.listByTargetId(id, CommentTypeEum.QUESTION);
 
 
         //增加阅读数
