@@ -4,10 +4,7 @@ import com.example.profession.dto.CommentDTO;
 import com.example.profession.enums.CommentTypeEum;
 import com.example.profession.exception.CustomizeErrorCode;
 import com.example.profession.exception.CustomizeException;
-import com.example.profession.mapper.CommentMapper;
-import com.example.profession.mapper.QuestionExtMapper;
-import com.example.profession.mapper.QuestionMapper;
-import com.example.profession.mapper.UserMapper;
+import com.example.profession.mapper.*;
 import com.example.profession.model.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +33,9 @@ public class CommentService {
     @Autowired
     private UserMapper userMapper;
 
+    @Autowired
+    private CommentExtMapper commentExtMapper;
+
     @Transactional
     public void insert(Comment comment) {
         if (comment.getParentId() == null || comment.getCommentator() == 0) {
@@ -53,14 +53,22 @@ public class CommentService {
                 throw new CustomizeException(CustomizeErrorCode.TYPE_PARAM_WRONG);
             }
             commentMapper.insert(comment);
+
+            //增加评论数
+            Comment parentComment = new Comment();
+            parentComment.setId(comment.getParentId());
+            parentComment.setCommentCount(1);
+            commentExtMapper.incCommentCount(parentComment);
+
         } else {
             //回复问题
-
             Question question = questionMapper.selectByPrimaryKey(comment.getParentId());
             if (question == null) {
                 throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
             }
             commentMapper.insert(comment);
+
+            //增加回复数
             question.setCommentCount(1);
             questionExtMapper.incCommentCount(question);
         }

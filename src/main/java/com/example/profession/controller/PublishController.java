@@ -1,9 +1,11 @@
 package com.example.profession.controller;
 
+import com.example.profession.cache.TagCache;
 import com.example.profession.dto.QuestionDTO;
 import com.example.profession.model.Question;
 import com.example.profession.model.User;
 import com.example.profession.service.QuestionService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,27 +33,37 @@ public class PublishController {
         QuestionDTO question = questionService.getById(id);
         model.addAttribute("title", question.getTitle());
         model.addAttribute("description", question.getDescription());
-        model.addAttribute("tags", question.getTags());
+        model.addAttribute("tag", question.getTag());
         model.addAttribute("id",question.getId());
+        model.addAttribute("tags", TagCache.get());
         return "publish";
     }
 
     @GetMapping("/publish")
-    public String publish() {
+    public String publish(Model model) {
+        model.addAttribute("tags", TagCache.get());
         return "publish";
     }
 
     @PostMapping("/publish")
     public String doPublic(@RequestParam(value = "title", required = false) String title,
                            @RequestParam(value = "description", required = false) String description,
-                           @RequestParam(value = "tags", required = false) String tags,
+                           @RequestParam(value = "tag", required = false) String tag,
                            @RequestParam(value = "id", required = false) Long id,
                            HttpServletRequest request,
                            Model model) {
 
         model.addAttribute("title", title);
         model.addAttribute("description", description);
-        model.addAttribute("tags", tags);
+        model.addAttribute("tag", tag);
+
+        //用户登录校验
+        User user = (User)request.getSession().getAttribute("user");
+        if (user == null) {
+            model.addAttribute("error", "用户未登录");
+            return "publish";
+
+        }
 
        if (title == null || title == "") {
            model.addAttribute("error", "标题不能为空");
@@ -61,22 +73,22 @@ public class PublishController {
             model.addAttribute("error", "问题补充不能为空");
             return "publish";
         }
-        if (tags == null || tags == "") {
+        if (tag == null || tag == "") {
             model.addAttribute("error", "标签不能为空");
             return "publish";
         }
 
-        User user = (User)request.getSession().getAttribute("user");
-        if (user == null) {
-            model.addAttribute("error", "用户未登录");
+        String invalid = TagCache.filterInvalid(tag);
+        if (StringUtils.isNoneBlank(invalid)) {
+            model.addAttribute("error", "输入标签不合法" + invalid);
             return "publish";
-
         }
+
 
         Question question = new Question();
         question.setTitle(title);
         question.setDescription(description);
-        question.setTags(tags);
+        question.setTag(tag);
         question.setCreator(user.getId());
         question.setGmtCreate(System.currentTimeMillis());
         question.setGmtModified(question.getGmtCreate());

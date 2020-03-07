@@ -15,7 +15,7 @@
     <result column="view_count" jdbcType="INTEGER" property="viewCount" />
     <result column="comment_count" jdbcType="INTEGER" property="commentCount" />
     <result column="like_count" jdbcType="INTEGER" property="likeCount" />
-    <result column="tags" jdbcType="VARCHAR" property="tags" />
+    <result column="tag" jdbcType="VARCHAR" property="tag" />
   </resultMap>
   <update id="incView" parameterType="com.example.profession.model.Question">
     update question
@@ -28,4 +28,18 @@
     set comment_count = comment_count + #{commentCount ,jdbcType=INTEGER}
     where id = #{id}
   </update>
+
+  <select id="selectRelated" parameterType="com.example.profession.model.Question" resultMap="BaseResultMap">
+    select * from question
+    <where>
+      <if test="id != null">
+        and id != #{id}
+      </if>
+      <if test="tag != null and tag != ''">
+        and tag regexp #{tag}
+      </if>
+    </where>
+    order by gmt_create desc limit 20
+  </select>
+
 </mapper>

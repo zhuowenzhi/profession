@@ -53,6 +53,7 @@ public class CommentController {
         comment.setGmtModified(System.currentTimeMillis());
         comment.setCommentator(user.getId());
         commentService.insert(comment);
+
         return ResultDTO.okOf();
     }
     @ResponseBody

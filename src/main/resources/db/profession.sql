@@ -49,7 +49,7 @@ CREATE TABLE `question` (
   `view_count` int(11) DEFAULT '0',
   `comment_count` int(11) DEFAULT '0',
   `like_count` int(11) DEFAULT '0',
-  `tags` varchar(255) DEFAULT NULL,
+  `tag` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8;
 
