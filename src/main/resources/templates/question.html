@@ -8,6 +8,12 @@
     <link rel="stylesheet" href="/bootstrap-3.3.7-dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css"/>
     <link rel="stylesheet" href="/css/profession.css"/>
+    <link rel="stylesheet" href="/css/editormd.min.css"/>
+    <link rel="stylesheet" href="/css/editormd.preview.min.css"/>
+    <script src="/jquery-3.4.1/jquery-3.4.1.min.js"></script>
+    <script src="/js/editormd.min.js" type="application/javascript"></script>
+    <script src="/js/lib/marked.min.js"></script>
+    <script src="/js/lib/prettify.min.js"></script>
 </head>
 <script type="text/javascript">
     window.onload = function () {
@@ -47,16 +53,14 @@
 
 
                 <!--内容-->
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" th:text="${question.description}"></div>
-                <!--内容-->
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="question-view">
                     <textarea style="display:none;" th:text="${question.description}"></textarea>
                 </div>
-                <!--<script type="text/javascript">-->
-                    <!--$(function () {-->
-                        <!--editormd.markdownToHTML("question-view", {});-->
-                    <!--});-->
-                <!--</script>-->
+                <script type="text/javascript">
+                    $(function () {
+                        editormd.markdownToHTML("question-view", {});
+                    });
+                </script>
 
                 <!--<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"-->
                      <!--th:if="${!#lists.isEmpty(#httpServletRequest.getServletContext().getAttribute('FOOTER'))}"-->
@@ -207,7 +211,6 @@
 </div>
 
 </body>
-<script src="/jquery-3.4.1/jquery-3.4.1.min.js"></script>
 <script src="/bootstrap-3.3.7-dist/js/bootstrap.min.js" type="application/javascript"></script>
 <script src="/js/profession.js"></script>
 <script src="/js/moment.js"></script>
