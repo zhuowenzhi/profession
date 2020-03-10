@@ -1,5 +1,6 @@
 package com.example.profession.mapper;
 
+import com.example.profession.dto.QuestionQueryDTO;
 import com.example.profession.model.Question;
 import com.example.profession.model.QuestionExample;
 import java.util.List;
@@ -134,4 +135,6 @@ public interface QuestionMapper {
      * @mbg.generated Mon Mar 09 15:50:22 CST 2020
      */
     int updateByPrimaryKey(Question record);
+
+    Integer countBySearch(QuestionQueryDTO questionQueryDTO);
 }

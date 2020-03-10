@@ -81,6 +81,7 @@ public class CommentService {
             if (question == null) {
                 throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
             }
+            comment.setLikeCount((long) 0);
             comment.setCommentCount(0);
             commentMapper.insert(comment);
             //增加回复数
