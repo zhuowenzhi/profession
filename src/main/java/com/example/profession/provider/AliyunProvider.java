@@ -30,14 +30,13 @@ public class AliyunProvider {
     String endpoint;
 
     // 创建OSSClient实例。
-    OSS ossClient = new OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);
+//    OSS ossClient = new OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);
 
     // 创建PutObjectRequest对象。
-    PutObjectRequest putObjectRequest = new PutObjectRequest("<yourBucketName>", "<yourObjectName>", new File("<yourLocalFile>"));
+//    PutObjectRequest putObjectRequest = new PutObjectRequest("<yourBucketName>", "<yourObjectName>", new File("<yourLocalFile>"));
 
-    public void upload(InputStream inputStream, String contentType, String originalFilename) {
+//    public void upload(InputStream inputStream, String contentType, String originalFilename) {
 
-    }
 
     // 如果需要上传时设置存储类型与访问权限，请参考以下示例代码。
     // ObjectMetadata metadata = new ObjectMetadata();
@@ -50,5 +49,4 @@ public class AliyunProvider {
 
     // 关闭OSSClient。
 //    ossClient.shutdown();
-
 }

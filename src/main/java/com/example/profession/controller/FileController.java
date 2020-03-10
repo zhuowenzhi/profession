@@ -27,11 +27,6 @@ public class FileController {
     public FileDTO upload(HttpServletRequest request) {
         MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
         MultipartFile file = multipartRequest.getFile("editor-image-file");
-        try {
-            aliyunProvider.upload(file.getInputStream(),file.getContentType(),file.getOriginalFilename());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         FileDTO fileDTO = new FileDTO();
         fileDTO.setSuccess(1);
         fileDTO.setUrl("/images/ucdn.png");
