@@ -6,6 +6,7 @@ import com.example.profession.mapper.UserMapper;
 import com.example.profession.model.User;
 import com.example.profession.provider.GithubProvider;
 import com.example.profession.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,7 @@ import java.util.UUID;
  * Date: 2020/02/20
  */
 @Controller
+@Slf4j
 public class AuthorizeController {
 
     @Autowired
@@ -72,6 +74,7 @@ public class AuthorizeController {
             return "redirect:/";
         } else {
             //登录失败
+            log.error("callback get github error");
             return "redirect:/";
         }
     }

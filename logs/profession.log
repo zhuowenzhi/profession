@@ -96,3 +96,6 @@
 2020-03-10 05:39:42.299 DEBUG 20433 --- [http-nio-8888-exec-7] c.e.p.m.N.countByExample                 : ==>  Preparing: select count(*) from notification WHERE ( receiver = ? and status = ? ) 
 2020-03-10 05:39:42.299 DEBUG 20433 --- [http-nio-8888-exec-7] c.e.p.m.N.countByExample                 : ==> Parameters: 12(Long), 0(Integer)
 2020-03-10 05:39:42.300 DEBUG 20433 --- [http-nio-8888-exec-7] c.e.p.m.N.countByExample                 : <==      Total: 1
+2020-03-10 05:49:06.108  INFO 20433 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-03-10 05:49:06.110  INFO 20433 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2020-03-10 05:49:06.120  INFO 20433 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
